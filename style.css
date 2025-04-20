@@ -313,6 +313,10 @@ gap: 1rem;
     margin: auto 0;
 }
 
+.text-container p{
+    text-align: justify;
+}
+
 /* EXPERIENCE section */
 
 #experience {
