@@ -12,11 +12,11 @@
   #projects {
     height: fit-content;
   }
-
+/* 
   .tranding-slider,
   .tranding-slide-img img {
     max-width: 60rem;
-  }
+  } */
 }
 
 @media screen and (max-width: 1200px) {

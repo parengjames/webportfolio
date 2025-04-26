@@ -401,26 +401,27 @@ article .icon{
 }
 
 .container{
-    max-width: 90rem;
+    width: 68rem;
     padding: 0 1rem;
     margin: 0 auto;
+    display: relative;
 }
 
 .tranding-slider {
-    height: 52rem;
+    height: 34rem;
+    max-width: 70rem;
     padding: 2rem 0;
     position: relative;
 }
 
 .tranding-slide {
-    width: 37rem;
-    height: 42rem;
-    position: relative;
+    width: 24rem;
+    height: 28rem;
 }
 
 .tranding-slide .tranding-slide-img img {
-    width: 37rem;
-    height: 42rem;
+    width: 24rem;
+    height: 28rem;
     border-radius: 2rem;
     object-fit: cover;
   }
