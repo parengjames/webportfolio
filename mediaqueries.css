@@ -12,11 +12,45 @@
   #projects {
     height: fit-content;
   }
-/* 
-  .tranding-slider,
-  .tranding-slide-img img {
-    max-width: 60rem;
-  } */
+
+}
+
+@media screen and (max-width: 1700px) {
+  .container {
+    width: 70rem;
+  }
+
+  .tranding-slide {
+    width: 26rem;
+    height: 30rem;
+  }
+
+  .tranding-slider {
+    max-width: 70rem;
+  }
+  .tranding-slide .tranding-slide-img img {
+    width: 26rem;
+    height: 30rem;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .container {
+    width: 50rem;
+  }
+
+  .tranding-slide {
+    width: 20rem;
+    height: 24rem;
+  }
+
+  .tranding-slider {
+    max-width: 50rem;
+  }
+  .tranding-slide .tranding-slide-img img {
+    width: 20rem;
+    height: 24rem;
+  }
 }
 
 @media screen and (max-width: 1200px) {
@@ -60,16 +94,34 @@
   .about-containers {
     margin-top: 0;
   }
-
   .container {
-    width: fit-content;
+    width: 50rem;
   }
 
-  .tranding-slider,
-  .tranding-slide-img img {
+  .tranding-slide {
+    width: 20rem;
+    height: 24rem;
+  }
+
+  .tranding-slider {
     max-width: 50rem;
   }
+  .tranding-slide .tranding-slide-img img {
+    width: 20rem;
+    height: 24rem;
+  }
 }
+
+@media screen and (max-width: 900px) {
+  .container {
+    width: 28rem;
+  }
+
+  .tranding-slider {
+    max-width: 28rem;
+  }
+}
+
 
 @media screen and (max-width: 600px) {
   #contact,
@@ -135,30 +187,13 @@
   .linkedin-icon {
     margin-left: 1.5rem;
   }
-  .container {
-    width: fit-content;
-  }
 
-  .tranding-slider,
-  .tranding-slide-img img {
-    max-width: 30rem;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .container {
-    width: fit-content;
-  }
   .tranding-slider {
-    max-width: 25rem;
+    max-width: 20rem;
   }
 
-  .tranding-slide {
-    max-width: 28rem;
-    max-height: 36rem;
-  }
-  .tranding-slide .tranding-slide-img img {
-    max-width: 28rem;
-    max-height: 36rem;
+  .container{
+    max-width: 20rem;
   }
 }
+
