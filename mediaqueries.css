@@ -105,6 +105,7 @@
 
   .tranding-slider {
     max-width: 50rem;
+    height: 29rem;
   }
   .tranding-slide .tranding-slide-img img {
     width: 20rem;
@@ -114,16 +115,26 @@
 
 @media screen and (max-width: 900px) {
   .container {
-    width: 28rem;
+    width: 36rem;
   }
 
   .tranding-slider {
-    max-width: 28rem;
+    max-width: 36rem;
+    height: 26rem;
+  }
+
+  .tranding-slide .tranding-slide-img img {
+    width: 19rem;
+    height: 23rem;
+  }
+  .tranding-slide {
+    width: 19rem;
+    height: 23rem;
   }
 }
 
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   #contact,
   footer {
     height: 40vh;
@@ -188,12 +199,62 @@
     margin-left: 1.5rem;
   }
 
-  .tranding-slider {
-    max-width: 20rem;
+  .container{
+    max-width: 25rem;
   }
 
-  .container{
-    max-width: 20rem;
+  .tranding-slider {
+    max-width: 24rem;
+    height: 26rem;
+  }
+
+  .tranding-slide .tranding-slide-img img {
+    width: 18rem;
+    height: 22rem;
+  }
+  .tranding-slide {
+    width: 18rem;
+    height: 22rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    width: 21rem;
+  }
+
+  .tranding-slider {
+    max-width: 21rem;
+    height: 25rem;
+  }
+
+  .tranding-slide .tranding-slide-img img {
+    width: 16rem;
+    height: 19rem;
+  }
+  .tranding-slide {
+    width: 16rem;
+    height: 19rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .container {
+    width: 16rem;
+  }
+
+  .tranding-slider {
+    max-width: 16rem;
+    height: 23rem;
+  }
+
+  .tranding-slide .tranding-slide-img img {
+    width: 16rem;
+    height: 19rem;
+  }
+  .tranding-slide {
+    width: 16rem;
+    height: 19rem;
   }
 }
 
