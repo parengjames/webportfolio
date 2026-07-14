@@ -1,573 +1,951 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>James Tuling | resume</title>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
-    />
+    <title>James Tuling | Portfolio</title>
     <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="mediaqueries.css" />
-    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: #ffffff;
+        color: #111;
+        font-size: 18px;
+        line-height: 1.7;
+      }
+
+      .container {
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        min-height: 100vh;
+      }
+
+      /* SIDEBAR */
+      .sidebar {
+        background: #f5f5f5;
+        padding: 40px 28px;
+        border-right: 1px solid #e5e5e5;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+      }
+
+      .sidebar {
+        height: 100vh; /* full screen height */
+        overflow-y: auto; /* enable vertical scroll */
+        overflow-x: hidden; /* prevent horizontal scroll */
+        position: sticky; /* optional but nice for portfolios */
+        top: 0;
+        scrollbar-width: none;
+      }
+
+      .sidebar::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      .sidebar::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+      }
+
+      .sidebar::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+
+      .content {
+        height: 100vh;
+        overflow-y: auto;
+        scroll-behavior: smooth;
+
+        /* Firefox */
+        scrollbar-width: none;
+      }
+
+      .content::-webkit-scrollbar {
+        width: 0px;
+        background: transparent;
+      }
+
+      .content:hover::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .content:hover::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.35);
+        border-radius: 10px;
+      }
+
+      .content:hover::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 0, 0, 0.55);
+      }
+
+      .dark-mode .content:hover::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.35);
+      }
+
+      .dark-mode .content:hover::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.55);
+      }
+
+      /* Scrollbar for Content */
+      .content::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .content::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      .content::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        transition: 0.3s;
+      }
+
+      .content::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 0, 0, 0.5);
+      }
+
+      /* Dark Mode Scrollbar */
+      .dark-mode .content::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      .dark-mode .content::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.5);
+      }
+
+      .profile {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .profile img {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid #ddd;
+        margin-bottom: 18px;
+      }
+
+      .profile h2 {
+        font-size: 26px;
+        margin-bottom: 6px;
+      }
+
+      .profile p {
+        font-size: 16px;
+        color: #555;
+      }
+
+      .download-btn {
+        margin-top: 18px;
+        display: inline-block;
+        padding: 10px 18px;
+        background: #111;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 6px;
+        font-size: 15px;
+      }
+
+      .download-btn:hover {
+        background: #333;
+      }
+
+      .info-block {
+        margin-bottom: 35px;
+      }
+      .info-block h3 {
+        font-size: 14px;
+        margin-bottom: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #222;
+      }
+      .info-block p {
+        font-size: 16px;
+        color: #444;
+        margin-bottom: 6px;
+      }
+
+      /* SKILL TAGS */
+      .skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .skill {
+        background: #e9e9e9;
+        padding: 6px 10px;
+        border-radius: 6px;
+        font-size: 14px;
+      }
+
+      /* CONTENT */
+      .content {
+        padding: 60px;
+      }
+
+      .hero {
+        margin-bottom: 60px;
+      }
+      .hero h1 {
+        font-size: 42px;
+        margin-bottom: 10px;
+      }
+      .hero p {
+        font-size: 20px;
+        color: #555;
+        /* max-width: 700px; */
+      }
+
+      /* .goal-list {
+        margin-top: 10px;
+        padding-left: 20px;
+      }
+
+      .goal-list li {
+        margin-bottom: 14px;
+        color: #444;
+        font-size: 17px;
+        line-height: 1.8;
+      } */
+
+      .goal-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .goal-list li {
+        background: #fafafa;
+        border: 1px solid #e5e5e5;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 12px;
+      }
+
+      .section {
+        margin-bottom: 70px;
+      }
+      .section h2 {
+        font-size: 30px;
+        margin-bottom: 25px;
+        border-left: 4px solid #111;
+        padding-left: 12px;
+      }
+
+      /* PROJECT GRID */
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 25px;
+      }
+
+      .project {
+        border: 1px solid #e5e5e5;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #fafafa;
+        transition: 0.25s;
+        cursor: default;
+      }
+      .project img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+      }
+      .project-content {
+        padding: 18px;
+      }
+      .project h3 {
+        font-size: 20px;
+        margin-bottom: 8px;
+      }
+      .project p {
+        font-size: 16px;
+        color: #555;
+      }
+
+      /* CERTIFICATES */
+
+      .view-more-card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #e5e5e5;
+        border-radius: 10px;
+      }
+
+      .view-more-card a {
+        width: 100%;
+        height: 100%;
+        min-height: 250px; /* Match your certificate cards */
+        border-radius: 16px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+
+        color: black;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .view-more-card a:hover {
+        background: #ef4444;
+        color: #fff;
+        transform: translateY(-4px);
+      }
+
+      .view-more-card i {
+        font-size: 2rem;
+      }
+
+      .view-more-card span {
+        font-size: 0.95rem;
+        font-weight: 600;
+      }
+
+      .cert {
+        cursor: pointer;
+        border: 1px solid #e5e5e5;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #fafafa;
+        transition: 0.25s;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .cert:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.07);
+      }
+
+      .cert img {
+        width: 100%;
+        height: 180px; /* adjust height as needed */
+        object-fit: cover; /* makes image cover the div without distortion */
+        display: block;
+      }
+
+      .cert .project-content {
+        padding: 12px 16px;
+        flex: 1;
+      }
+
+      /* LIGHTBOX */
+      .lightbox {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+      .lightbox img {
+        max-width: 90%;
+        max-height: 85%;
+        border-radius: 10px;
+      }
+      .lightbox.show {
+        display: flex;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 900px) {
+        .container {
+          grid-template-columns: 1fr;
+        }
+        .sidebar {
+          height: auto;
+          position: relative;
+          border-right: none;
+          border-bottom: 1px solid #e5e5e5;
+        }
+        .content {
+          padding: 40px 28px;
+        }
+        .hero h1 {
+          font-size: 34px;
+        }
+      }
+
+      @media (min-width: 768px) {
+        /* Desktop and Tablet */
+        body {
+          padding-left: 1in;
+          padding-right: 1in;
+        }
+
+        .container {
+          border-right: 0.5px solid rgba(207, 207, 207, 0.5); /* #555 with 50% opacity */
+          min-width: auto;
+        }
+      }
+
+      @media (max-width: 767px) {
+        /* Mobile */
+        body {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+
+        .container {
+          border-right: none; /* remove border on small screens */
+        }
+      }
+
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 24px;
+      }
+
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 24px;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+
+      input:checked + .slider {
+        background-color: #111;
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(26px);
+      }
+
+      /* dark mode */
+      /* Dark Mode Base */
+      body.dark-mode {
+        background-color: #111; /* dark background */
+        color: #f5f5f5; /* main text light */
+      }
+
+      /* Sidebar */
+      body.dark-mode .sidebar {
+        background-color: #1e1e1e;
+        color: #f5f5f5;
+        /* border-right: 4px solid rgba(255, 0, 0, 0.5); /* vivid border still visible */
+      }
+
+      /* Profile info */
+      body.dark-mode .profile h2,
+      body.dark-mode .profile p {
+        color: #f0f0f0;
+      }
+
+      /* Download button */
+      body.dark-mode a.download-btn {
+        background-color: #f5f5f5;
+        color: #111;
+      }
+
+      body.dark-mode a.download-btn:hover {
+        background-color: #ddd;
+      }
+
+      /* Info blocks */
+      body.dark-mode .info-block h3 {
+        color: #fff;
+      }
+
+      body.dark-mode .info-block p {
+        color: #ddd;
+      }
+
+      /* Skills */
+      body.dark-mode .skills .skill {
+        background-color: #333;
+        color: #eee;
+      }
+
+      /* Main Content */
+      body.dark-mode .content h1,
+      body.dark-mode .content h2,
+      body.dark-mode .content h3 {
+        color: #fff; /* all headings white */
+      }
+
+      body.dark-mode .content p,
+      body.dark-mode .timeline-item span,
+      body.dark-mode .contact-card p {
+        color: #ddd; /* paragraphs and timeline text lighter */
+      }
+
+      /* Projects & Certificates Cards */
+      body.dark-mode .project,
+      body.dark-mode .cert,
+      body.dark-mode .contact-card {
+        background-color: #1a1a1a;
+        border: 1px solid #444;
+      }
+
+      /* Timeline dots */
+      body.dark-mode .timeline-item::before {
+        background: #f5f5f5; /* visible on dark background */
+      }
+
+      /* Optional: subtle hover effect for projects */
+      body.dark-mode .project:hover,
+      body.dark-mode .cert:hover {
+        box-shadow: 0 10px 22px rgba(255, 255, 255, 0.08);
+      }
+
+      body.dark-mode .project,
+      body.dark-mode .cert,
+      body.dark-mode .contact-card,
+      body.dark-mode .goal-list li {
+        background-color: #1a1a1a;
+        border: 1px solid #444;
+        color: #ddd;
+      }
+    </style>
   </head>
+
   <body>
-    <!-- Desktop Navigation section-->
-    <nav id="desktop-nav">
-      <div class="logo">James Tuling</div>
-      <div>
-        <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
-    <!-- Lower than 1200 pixel section-->
-    <nav id="hamburger-nav">
-      <div class="logo">James Tuling</div>
-      <div class="hamburger-menu">
-        <div class="hamburger-icon" onclick="toggleMenu()">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <div class="menu-links">
-          <li><a href="#about" onclick="toggleMenu()">About</a></li>
-          <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
-          <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-          <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-        </div>
-      </div>
-    </nav>
-    <!-- Profile section-->
-    <section id="profile">
-      <div class="picture-container">
-        <img src="./assets/Profile 1.png" alt="James Tuling Profile Picture"">
-      </div>
-      <div class="section_text">
-        <p class="section_text_p1">Hello, I'm</p>
-        <h1 class="title">James M. Tuling</h1>
-        <p class="section_text_p2">I'm a <span class="auto-type"></span></p>
-
-        <script>
-          var typed = new Typed(".auto-type", {
-            strings: ["IT Support", "Graphic designer", "Web developer"],
-            typeSpeed: 150,
-            backSpeed: 150,
-            loop: true,
-          });
-        </script>
-
-        <div class="btn-container">
-          <button
-            class="btn btn-color-2"
-            onclick="window.open('./assets/James Tuling - CV.pdf')"
+    <div class="container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="profile">
+          <img src="assets/jamesprofilelight.png" alt="profile" />
+          <h2>James Tuling</h2>
+          <p>IT professional</p>
+          <a
+            class="download-btn"
+            target="_blank"
+            href="/assets/Tuling Resume.pdf"
+            >View Resume</a
           >
-            Download Resume
-          </button>
-          <button
-            class="btn btn-color-1"
-            onclick="location.href = './#contact'"
-          >
-            Contact
-          </button>
         </div>
-        <div id="social-container">
-          <img
-            src="./assets/linkedin.png"
-            alt="linkedin Profile"
-            class="icon"
-            onclick="window.open('https://www.linkedin.com/in/jamestulingph')"
-          />
-          <img
-            src="./assets/github.png"
-            alt="github Profile"
-            class="icon"
-            onclick="window.open('https://github.com/')"
-          />
+
+        <!-- <div style="text-align: center; margin-top: 20px">
+          <label class="switch">
+            <input type="checkbox" id="darkModeToggle" />
+            <span class="slider round"></span>
+          </label>
+          <p style="margin-top: 5px; font-size: 14px">Dark Mode</p>
+        </div> -->
+
+        <div class="info-block">
+          <h3>Personal</h3>
+          <p>Age: 25</p>
+          <p>Gender: Male</p>
+          <p>Email: jamestuling3@gmail.com</p>
+          <p>Phone: +63 991 298 9249</p>
         </div>
-      </div>
-    </section>
-    <!-- ABOUT section -->
-    <section id="about">
-      <p class="section_text_p1">Get to Know More</p>
-      <h1 class="title">About Me</h1>
-      <div class="section-container">
-        <div class="picture-container">
-          <img
-            src="./assets/about-pic.png"
-            alt="Profile picture 2"
-            class="about-pic"
-          />
+
+        <div class="info-block">
+          <h3>Competencies</h3>
+          <div class="skills">
+            <span class="skill">IT Helpdesk Support</span>
+            <span class="skill">Windows Administration</span>
+            <span class="skill">Microsoft 365</span>
+            <span class="skill">Desktop Support</span>
+            <span class="skill">Hardware Troubleshooting</span>
+            <span class="skill">Software Troubleshooting</span>
+            <span class="skill">Network Troubleshooting</span>
+            <span class="skill">Mikrotik Router Management</span>
+            <span class="skill">Server Maintenance</span>
+            <span class="skill">Backup &amp; Recovery</span>
+            <span class="skill">Workstation Deployment</span>
+            <span class="skill">IT Asset Management</span>
+            <span class="skill">Technical Documentation</span>
+            <span class="skill">Incident Management</span>
+            <span class="skill">End-User Support</span>
+            <span class="skill">Vendor Coordination</span>
+            <span class="skill">Problem Solving</span>
+            <span class="skill">Customer Service</span>
+          </div>
         </div>
-        <div class="about-details-container">
-          <div class="about-containers">
-            <div class="details-container">
+
+        <div class="info-block">
+          <h3>Address</h3>
+          <p>Digos City</p>
+          <p>Davao del Sur</p>
+          <p>Philippines</p>
+        </div>
+      </aside>
+
+      <!-- Main content -->
+      <main class="content">
+        <section class="hero">
+          <h1>Hello, I'm James</h1>
+          <p>
+            IT professional with 3 years of experience troubleshooting hardware,
+            software, network, and server-related issues. Skilled in Windows
+            environments, Microsoft 365, system maintenance, backup and
+            recovery, and end-user support. Experienced in resolving technical
+            incidents, maintaining IT documentation, and delivering reliable
+            technology solutions.
+          </p>
+        </section>
+
+        <section class="section">
+          <h2>Current Goal</h2>
+
+          <ol class="goal-list">
+            <li>
+              To build a long-term career in Information Technology by gaining
+              hands-on experience in technical support, networking, and cloud
+              technologies, while working in a remote or online environment that
+              allows flexibility and continuous skill development.
+            </li>
+
+            <li>
+              Seeking opportunities to apply and further enhance my technical
+              skills in IT and infrastructure, contributing to efficient,
+              reliable, and well-managed IT operations in a dynamic
+              organization.
+            </li>
+
+            <li>
+              Dedicated to advancing my career through continuous learning,
+              industry certifications, and practical experience, with a strong
+              focus on improving problem-solving, system troubleshooting, and
+              cloud-based support systems in an online or remote work setup.
+            </li>
+          </ol>
+        </section>
+
+        <section class="section">
+          <h2>Education</h2>
+          <p>
+            Bachelor of Science in Information Technology<br />Cor Jesu College
+            • 2019 – 2023
+          </p>
+          <p>
+            Capstone Project: Development of a Web Application for Student
+            Information Management
+          </p>
+        </section>
+
+        <section class="section">
+          <h2>Certifications</h2>
+          <div class="project-grid">
+            <div class="cert" onclick="showCert('cert1')">
               <img
-                src="./assets/experience.png"
-                alt="experience icon"
-                class="icon"
+                src="assets/it support.png"
+                alt="IT Support Specialist Certificate"
               />
-              <h3>Experience</h3>
-              <p>
-                2 years <br />
-                IT Staff
-              </p>
-            </div>
-            <div class="details-container">
-              <img
-                src="./assets/education.png"
-                alt="education icon"
-                class="icon"
-              />
-              <h3>Education</h3>
-              <p>
-                Bachelors Degree<br />
-                Bachelors of Science in Information technology
-              </p>
-            </div>
-          </div>
-          <div class="text-container">
-            <p>
-              Let’s turn bold ideas into brilliant realities. I’m a passionate
-              creator who blends IT expertise, web development, and digital
-              media to craft seamless, engaging solutions. Whether it’s
-              optimizing systems, building sleek web apps, or designing
-              eye-catching content, I bring both precision and imagination to
-              every project. Always evolving and inspired, I’m here to help you
-              create something that truly stands out.
-            </p>
-          </div>
-        </div>
-      </div>
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='./#experience'"
-      />
-    </section>
-    <!-- EXPERIENCE section -->
-    <section id="experience">
-      <p class="section_text_p1">Explore My</p>
-      <h1 class="title">Experience</h1>
-      <div class="experience-details-container">
-        <div class="about-containers">
-          <!-- Experience details box 1 -->
-          <div class="details-container">
-            <h2 class="experience-sub-title">Graphics designing</h2>
-            <div class="article-container">
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Adobe Photoshop</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Canva</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Adobe Illustrator</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Filmora video editor</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Capcut Video Editor</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>quso.ai</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-            </div>
-          </div>
-          <!-- Experience details box 2 -->
-          <div class="details-container">
-            <h2 class="experience-sub-title">IT STAFF</h2>
-            <div class="article-container">
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Application maintenance</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Computer parts maintenance</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Network Management (Mikrotik)</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Printer Repair</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>VNC remote</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Mikrotik</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>MS Access</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-            </div>
-          </div>
-          <!-- Experience details box 3 -->
-          <div class="details-container">
-            <h2 class="experience-sub-title">Programming</h2>
-            <div class="article-container">
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>HTML</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>PHP</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Java</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Javascript</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>CSS</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>MySql Database</h3>
-                  <p>Experienced</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Laravel Framework</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
-        <img
-          src="./assets/arrow.png"
-          alt="Arrow icon"
-          class="icon arrow"
-          onclick="location.href='./#projects'"
-        />
-      </div>
-    </section>
-    <section id="projects">
-      <p class="section_text_p1">Browse My Recent</p>
-      <h1 class="title">Projects</h1>
-      <div class="experience-details-container">
-        <div class="about-containers">
-          <div class="details-container project-box">
-            <h2 class="experience-sub-title project-header">
-              Graphics Designs Projects
-            </h2>
-            <!-- Image carousel slider  -->
-            <div class="container">
-              <div class="swiper tranding-slider">
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide tranding-slide">
-                    <div class="tranding-slide-img">
-                      <img src="./assets/previews/image 1.jpg" alt="Tranding" />
-                    </div>
-                  </div>
-                  <div class="swiper-slide tranding-slide">
-                    <div class="tranding-slide-img">
-                      <img src="./assets/previews/image 2.jpg" alt="Tranding" />
-                    </div>
-                  </div>
-                  <div class="swiper-slide tranding-slide">
-                    <div class="tranding-slide-img">
-                      <img src="./assets/previews/image 3.jpg" alt="Tranding" />
-                    </div>
-                  </div>
-                  <div class="swiper-slide tranding-slide">
-                    <div class="tranding-slide-img">
-                      <img src="./assets/previews/image 4.jpg" alt="Tranding" />
-                    </div>
-                  </div>
-                  <div class="swiper-slide tranding-slide">
-                    <div class="tranding-slide-img">
-                      <img src="./assets/previews/image 5.jpg" alt="Tranding" />
-                    </div>
-                  </div>
-                  <div class="swiper-slide tranding-slide">
-                    <div class="tranding-slide-img">
-                      <img src="./assets/previews/image 6.jpg" alt="Tranding" />
-                    </div>
-                  </div>
-                  <div class="swiper-slide tranding-slide">
-                    <div class="tranding-slide-img">
-                      <img src="./assets/previews/image 7.jpg" alt="Tranding" />
-                    </div>
-                  </div>
-                  <div class="swiper-slide tranding-slide">
-                    <div class="tranding-slide-img">
-                      <img src="./assets/previews/image 8.jpg" alt="Tranding" />
-                    </div>
-                  </div>
-                </div>
-                <div class="tranding-slider-control">
-                  <div class="swiper-button-prev slider-arrow">
-                    <ion-icon name="arrow-back-outline"></ion-icon>
-                  </div>
-                  <div class="swiper-button-next slider-arrow">
-                    <ion-icon name="arrow-forward-outline"></ion-icon>
-                  </div>
-                  <div class="swiper-pagination"></div>
-                </div>
+              <div class="project-content">
+                <h3>IT Support Specialist Career Path</h3>
+                <p>Cisco Networking Academy</p>
               </div>
             </div>
-            <button
-              class="btn btn-color-1"
-              onclick="window.open('https://drive.google.com/drive/folders/1q-dOdWxowJl0RPDo9yQHdonNyYr1dBXv?usp=drive_link')"
-            >
-              Browse More
-            </button>
+
+            <div class="cert" onclick="showCert('cert2')">
+              <img
+                src="assets/ITC.png"
+                alt="Introduction to Cybersecurity Certificate"
+              />
+              <div class="project-content">
+                <h3>Introduction to Cybersecurity</h3>
+                <p>Cisco Networking Academy</p>
+              </div>
+            </div>
+
+            <div class="cert" onclick="showCert('cert3')">
+              <img
+                src="assets/learnai.png"
+                alt="Learn AI and ChatGPT Certificate"
+              />
+              <div class="project-content">
+                <h3>Learn AI and ChatGPT</h3>
+                <p>DICT Training Program</p>
+              </div>
+            </div>
+
+            <div class="cert" onclick="showCert('cert4')">
+              <img
+                src="assets/diploma_cert.png"
+                alt="Finishing Bachelors' Degree "
+              />
+              <div class="project-content">
+                <h3>Bachelor of Science in Information Technology</h3>
+                <p>Cor Jesu College, Inc.</p>
+              </div>
+            </div>
+
+            <div class="view-more-card">
+              <a
+                href="https://drive.google.com/drive/folders/1OT4ZCn-rcVGgWwoWGKjz4TBFtoSnbx1C?usp=sharing"
+                target="_blank"
+                title="View More Certificates"
+              >
+                <i class="fa-solid fa-arrow-right"></i>
+                <span>View More</span>
+              </a>
+            </div>
           </div>
-        </div>
-      </div>
+        </section>
 
-      <div class="experience-details-container">
-        <div class="about-containers">
-          <div class="details-container">
-            <h2 class="experience-sub-title project-header">
-              Programming Projects
-            </h2>
-            <button
-              style="margin-top: 1.5rem; width: fit-content"
-              class="btn btn-color-1"
-              onclick="window.open('https://github.com/parengjames?tab=repositories')"
-            >
-              Proceed to Github
-            </button>
+        <section class="section">
+          <h2>Projects</h2>
+
+          <!-- Graphics Projects -->
+          <h3 style="margin-bottom: 15px; margin-left: 5px; color: #111">
+            Graphics Projects
+          </h3>
+          <div class="project-grid">
+            <div class="project" onclick="showGraphic('g1')">
+              <img src="assets/previews/image 1.jpg" alt="Lung Month Poster" />
+              <div class="project-content">
+                <h3>Lung Month Poster</h3>
+                <p>A creative poster design for Lung Health Awareness Month.</p>
+              </div>
+            </div>
+
+            <div class="project" onclick="showGraphic('g2')">
+              <img src="assets/previews/image 2.jpg" alt="Sale poster" />
+              <div class="project-content">
+                <h3>The Better Traders Sale</h3>
+                <p>A vibrant poster design for a retail sale event.</p>
+              </div>
+            </div>
+
+            <div class="project" onclick="showGraphic('g3')">
+              <img src="assets/previews/image 3.jpg" alt="Event Schedule" />
+              <div class="project-content">
+                <h3>Event Schedule</h3>
+                <p>A minimalist poster design for a local event.</p>
+              </div>
+            </div>
+
+            <div class="project" onclick="showGraphic('g4')">
+              <img src="assets/previews/image 4.jpg" alt="Flyer Design" />
+              <div class="project-content">
+                <h3>Promotional Flyer</h3>
+                <p>A eye-catching flyer design for a promotional campaign.</p>
+              </div>
+            </div>
+
+            <div class="project" onclick="showGraphic('g5')">
+              <img src="assets/previews/image 5.jpg" alt="Infographic Design" />
+              <div class="project-content">
+                <h3>Infographic Design</h3>
+                <p>
+                  A visually appealing infographic design for a marketing
+                  campaign.
+                </p>
+              </div>
+            </div>
+
+            <div class="project" onclick="showGraphic('g6')">
+              <img
+                src="assets/previews/image 6.jpg"
+                alt="Brand Identity Design"
+              />
+              <div class="project-content">
+                <h3>Brand Identity Design</h3>
+                <p>A comprehensive brand identity design for a new startup.</p>
+              </div>
+            </div>
+
+            <div class="project" onclick="showGraphic('g7')">
+              <img
+                src="assets/previews/image 7.jpg"
+                alt="Social Media Graphics"
+              />
+              <div class="project-content">
+                <h3>Social Media Graphics</h3>
+                <p>
+                  A set of engaging social media graphics for a marketing
+                  campaign.
+                </p>
+              </div>
+            </div>
+
+            <div class="view-more-card">
+              <a
+                href="https://drive.google.com/drive/folders/1Hoyz326jaLffCk5iy7-d3zQC_PVAdF1c?usp=sharing"
+                target="_blank"
+                title="View More Certificates"
+              >
+                <i class="fa-solid fa-arrow-right"></i>
+                <span>View More</span>
+              </a>
+            </div>
           </div>
-        </div>
-      </div>
 
-      <div class="experience-details-container">
-        <div class="about-containers">
-          <div class="details-container">
-            <h2 class="experience-sub-title project-header">My Certificates</h2>
-            <button
-              style="margin-top: 1.5rem; width: fit-content"
-              class="btn btn-color-1"
-              onclick="window.open('https://drive.google.com/drive/folders/1OT4ZCn-rcVGgWwoWGKjz4TBFtoSnbx1C?usp=sharing')"
-            >
-              View Certificates
-            </button>
+          <!-- System Application Projects -->
+
+          <h3
+            style="
+              margin-bottom: 15px;
+              margin-left: 5px;
+              color: #111;
+              margin-top: 40px;
+            "
+          >
+            Information Technology Projects
+          </h3>
+          <div class="project-grid">
+            <div class="project">
+              <!-- <img src="assets/kuhaashoe.png" alt="Kuhaa Shoe Store" /> -->
+              <div class="project-content">
+                <h3>Online Pacs Viewer</h3>
+                <p>
+                  Co-developer of a web-based PACS viewer for medical imaging.
+                  Using a Orthanc server and Godaddy as a Hosting Provider,
+                  Nginx as the web server, and Mikrotik as a Router.
+                </p>
+              </div>
+            </div>
+
+            <div class="project">
+              <!-- <img src="assets/portfolio.png" alt="Portfolio Website" /> -->
+              <div class="project-content">
+                <h3>Portfolio Website</h3>
+                <p>
+                  Developed a personal portfolio website to showcase skills,
+                  projects, and certifications. Built using HTML, CSS, and
+                  JavaScript.
+                </p>
+              </div>
+            </div>
+
+            <div class="project">
+              <!-- <img src="assets/itsupport.png" alt="IT Support Documentation" /> -->
+              <div class="project-content">
+                <h3>Online Tutoring Web Application</h3>
+                <p>
+                  Using PHP and MySQL to create a platform for online tutoring
+                  services. Successfully defended the project by my client.
+                </p>
+              </div>
+            </div>
+
+            <div class="project">
+              <!-- <img src="assets/itsupport.png" alt="IT Support Documentation" /> -->
+              <div class="project-content">
+                <h3>Restore Fault Hospital System server</h3>
+                <p>
+                  Restored a hospital system server that was down due to a
+                  Hard drive failure and Database corruption. Successfully recovered the server and restored
+                  the system to normal operation.
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='./#contact'"
-      />
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact">
-      <p class="section_text_p1">Get in Touch</p>
-      <h1 class="title">Contact Me</h1>
-      <div class="contact-info-upper-container">
-        <div class="contact-info-container">
-          <img
-            src="./assets/email.png"
-            alt="email icon"
-            class="icon contact-icon email-icon"
-          />
-          <p>
-            <a href="mailto:jamestuling3@gmail.com">jamestuling3@gmail.com</a>
-          </p>
+        <!-- Lightbox for Graphics Projects -->
+        <div id="lightbox" class="lightbox" onclick="hideLightbox()">
+          <img id="lightImg" src="" alt="Preview" />
         </div>
-        <div class="contact-info-container">
-          <img
-            src="./assets/linkedin.png"
-            alt="linkedin icon"
-            class="icon contact-icon linkedin-icon"
-          />
-          <p>
-            <a href="https://www.linkedin.com/in/jamestulingph">LinkedIn</a>
-          </p>
-        </div>
-      </div>
-    </section>
-    <footer>
-      <nav>
-        <div class="nav-links-container">
-          <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-      </nav>
-      <p>Copyright &#169; 2025 James Tuling. All Rights Reserved.</p>
-    </footer>
 
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
-    ></script>
-    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-    <script src="script.js"></script>
+        <!-- <section class="section">
+          <h2>Contact</h2>
+          <p>Email: jamestuling3@gmail.com</p>
+          <p>Phone: +63 991 298 9249</p>
+        </section> -->
+      </main>
+    </div>
+
+    <!-- Lightbox for certificates -->
+    <div id="lightbox" class="lightbox" onclick="hideLightbox()">
+      <img id="lightImg" src="" alt="Certificate Preview" />
+    </div>
+
+    <script>
+      function showCert(id) {
+        let urls = {
+          cert1: "assets/it support.png",
+          cert2: "assets/ITC.png",
+          cert3: "assets/learnai.png",
+          cert4: "assets/diploma_cert.png",
+        };
+        document.getElementById("lightImg").src = urls[id];
+        document.getElementById("lightbox").classList.add("show");
+      }
+
+      function hideLightbox() {
+        document.getElementById("lightbox").classList.remove("show");
+      }
+    </script>
+
+    <script>
+      function showGraphic(id) {
+        const images = {
+          g1: "assets/previews/image 1.jpg",
+          g2: "assets/previews/image 2.jpg",
+          g3: "assets/previews/image 3.jpg",
+          g4: "assets/previews/image 4.jpg",
+          g5: "assets/previews/image 5.jpg",
+          g6: "assets/previews/image 6.jpg",
+          g7: "assets/previews/image 7.jpg",
+        };
+        document.getElementById("lightImg").src = images[id];
+        document.getElementById("lightbox").classList.add("show");
+      }
+
+      function hideLightbox() {
+        document.getElementById("lightbox").classList.remove("show");
+      }
+    </script>
+
+    <script>
+      const toggle = document.getElementById("darkModeToggle");
+      const body = document.body;
+      const profileImg = document.querySelector(".profile img");
+
+      toggle.addEventListener("change", () => {
+        if (toggle.checked) {
+          body.classList.add("dark-mode");
+          profileImg.src = "assets/jamesprofilenight.png"; // new dark mode image
+        } else {
+          body.classList.remove("dark-mode");
+          profileImg.src = "assets/jamesprofilelight.png"; // original image
+        }
+      });
+    </script>
   </body>
 </html>
