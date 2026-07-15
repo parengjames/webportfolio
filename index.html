@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -52,6 +52,42 @@
         scrollbar-width: none;
       }
 
+      .sidebar {
+        height: 100vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        /* Firefox */
+        scrollbar-width: thin;
+        scrollbar-color: transparent transparent;
+      }
+
+      .sidebar:hover {
+        scrollbar-color: rgba(130, 130, 130, 0.336) transparent;
+      }
+
+      .sidebar::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .sidebar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      .sidebar::-webkit-scrollbar-thumb {
+        background: transparent;
+        border-radius: 100px;
+        transition: background 0.25s ease;
+      }
+
+      .sidebar:hover::-webkit-scrollbar-thumb {
+        background: rgba(130, 130, 130, 0.7);
+      }
+
+      .sidebar:hover::-webkit-scrollbar-thumb:hover {
+        background: rgba(90, 90, 90, 0.9);
+      }
+
       .sidebar::-webkit-scrollbar {
         width: 6px;
       }
@@ -72,6 +108,45 @@
 
         /* Firefox */
         scrollbar-width: none;
+      }
+
+      .content {
+        height: 100vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        /* Firefox */
+        scrollbar-width: thin;
+        scrollbar-color: transparent transparent;
+      }
+
+      .content:hover {
+        scrollbar-color: rgba(130, 130, 130, 0.336) transparent;
+      }
+
+      /* Chrome, Edge, Safari */
+      .content::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .content::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      .content::-webkit-scrollbar-thumb {
+        background: transparent;
+        border-radius: 100px;
+        transition: background 0.25s ease;
+      }
+
+      /* Reveal scrollbar when hovering the content */
+      .content:hover::-webkit-scrollbar-thumb {
+        background: rgba(130, 130, 130, 0.7);
+      }
+
+      /* Darker while hovering the thumb */
+      .content:hover::-webkit-scrollbar-thumb:hover {
+        background: rgba(90, 90, 90, 0.9);
       }
 
       .content::-webkit-scrollbar {
@@ -868,9 +943,9 @@
               <div class="project-content">
                 <h3>Restore Fault Hospital System server</h3>
                 <p>
-                  Restored a hospital system server that was down due to a
-                  Hard drive failure and Database corruption. Successfully recovered the server and restored
-                  the system to normal operation.
+                  Restored a hospital system server that was down due to a Hard
+                  drive failure and Database corruption. Successfully recovered
+                  the server and restored the system to normal operation.
                 </p>
               </div>
             </div>
